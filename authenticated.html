@@ -12,6 +12,26 @@
   <!-- END LivePerson Monitor. -->
 
   <script>
+    function identityFn(callback) {
+        // When the lpTag runs, this function is called and tells us whether the user is authenticated or not
+        console.log('@@@ identityFn() has been called');
+        // iss is not currently used for anything but might be in the future
+        // acr must be loa1
+        // The sub value here should match the customer identifier passed in the sub claim of the JWT
+        callback({
+            sub: "12345678",
+            iss: "lp-ets-emea",
+            acr: "loa1"
+        });
+    }
+
+    this.window.lpTag.identities = this.window.lpTag.identities || [];
+    this.window.lpTag.identities.push(identityFn);
+
+    this.window.lpGetJWT = function (callback) {
+        // var token=$('textarea#token').val();
+        callback("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIrOTcyLTMtNTU1NS01NTYiLCJpc3MiOiJodHRwczovL2lkcC5saXZlcGVyc29uLm5ldCIsImFjciI6ImxvYTEiLCJleHAiOjE2MzQ5NzE5MzAsImlhdCI6MTU3MjUyMTI2MX0.ER1DnJKNhZ3pF1m78q_jn808vqWwmpHNRCRmhiLJ20VA6A-9hlvZ2mY7097bKcK2bZUmpzy7h5HYu7ZovGK0FoDNOaiyUgAhRxwC9pt9MBfngs_7INexQV1msDN2WVUvC8lD030UdB_1boRdHj9cDpQiehA-8AsdtoJPPSGbYTIcBrh6jAX7oy8Cu3PhCCofsjONs4B63Wcv9iNKqkmKHcmgUg6Ky7ECjcH4CnDsCopnyx2VxPuWQjOV2d2k7_IZlLOZOyM3L4dvGhe3W3dy-zIP6OhRmg8iY6yRRbOyBBhCQrjasb6EoTX5rZrN_qkciToZaGa-Ch4EKj9J-U0Ykg");
+    };
       
   </script>
 
